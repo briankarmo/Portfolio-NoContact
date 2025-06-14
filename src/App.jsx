@@ -5,7 +5,8 @@ import TechStack from "./components/TechStack";
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 import Portfolio from "./components/Portfolio";
-import UpworkLogo from "./components/UpworkLogo";
+import GlowingLogo from "./components/GlowingLogo";
+import StickyGlowingLogo from "./components/StickyGlowingLogo";
 import { AnimationProvider, pageTransition } from "./context/AnimationContext";
 import bkinclogo from "./assets/bkinclogo.png";
 
@@ -25,95 +26,147 @@ function App() {
         className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900"
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/10 via-transparent to-transparent opacity-50"></div>
-      <NavBar />
-      <main>
-          <AnimatePresence mode="wait">
-            <section id="home">
-              <motion.div
-                variants={pageTransition}
-                initial="initial"
-                animate="animate"
-                exit="exit"
+        <NavBar />
+        <GlowingLogo />
+        <main className="relative">
+          <section id="home">
+            <motion.div
+              variants={pageTransition}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <Home />
+            </motion.div>
+          </section>
+          <section id="about">
+            <motion.div
+              variants={pageTransition}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <About />
+            </motion.div>
+          </section>
+          <section id="techstack">
+            <motion.div
+              variants={pageTransition}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <TechStack />
+            </motion.div>
+          </section>
+          <section id="portfolio">
+            <motion.div
+              variants={pageTransition}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <Portfolio />
+            </motion.div>
+          </section>
+          <section id="logo" className="relative w-full py-16 bg-gradient-to-b from-gray-900 to-black">
+            <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div 
+                initial={{ opacity: 0, y: 100 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: 0.8,
+                  type: "spring",
+                  stiffness: 50,
+                  damping: 15,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="flex flex-col items-center justify-center space-y-4"
               >
-                <Home />
-              </motion.div>
-            </section>
-            <section id="about">
-              <motion.div
-                variants={pageTransition}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-              >
-                <About />
-              </motion.div>
-            </section>
-            <section id="techstack">
-              <motion.div
-                variants={pageTransition}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-              >
-                <TechStack />
-              </motion.div>
-            </section>
-            <section id="logo" className="relative w-full py-16 px-4 bg-gradient-to-b from-gray-900 to-black mt-10 mb-20">
-              <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div 
-                  initial={{ opacity: 0, y: 100 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  className="relative group"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   transition={{ 
-                    duration: 0.8,
                     type: "spring",
-                    stiffness: 50,
-                    damping: 15,
-                    ease: [0.22, 1, 0.36, 1]
+                    stiffness: 400,
+                    damping: 17
                   }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  className="flex flex-col items-center justify-center space-y-4"
                 >
-                  <div className="relative group">
-                    {/* Enhanced glow effect */}
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                      {/* Outer glow */}
-                      <div className="absolute inset-[-8px] bg-blue-600/40 rounded-full blur-md"></div>
-                      {/* Middle glow */}
-                      <div className="absolute inset-[-4px] bg-blue-500/50 rounded-full blur-sm"></div>
-                      {/* Inner glow */}
-                      <div className="absolute inset-[-2px] bg-blue-400/60 rounded-full"></div>
-                    </div>
-                    
-                    {/* Logo with enhanced shadow */}
-                    <img 
-                      src={bkinclogo} 
-                      alt="BKINC Logo" 
-                      className="w-32 h-auto relative z-10 transition-all duration-500 group-hover:brightness-125 group-hover:contrast-125 group-hover:shadow-blue-500/40"
-                    />
-                  </div>
-                  <p className="text-lg text-white font-medium">Crafting Digital Excellence</p>
+                  {/* Animated background glow effect */}
+                  <motion.div 
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    initial={false}
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      opacity: [0, 0.5, 0]
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <div className="absolute inset-[-10px] bg-gradient-to-r from-blue-500/40 via-cyan-500/40 to-blue-500/40 rounded-full blur-xl"></div>
+                    <div className="absolute inset-[-5px] bg-gradient-to-r from-blue-400/30 via-cyan-400/30 to-blue-400/30 rounded-full blur-lg"></div>
+                  </motion.div>
+
+                  {/* Pulsing ring effect */}
+                  <motion.div 
+                    className="absolute inset-[-2px] rounded-full"
+                    initial={false}
+                    animate={{
+                      scale: [1, 1.1, 1],
+                      opacity: [0.5, 0.2, 0.5]
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <div className="absolute inset-0 border-2 border-blue-500/30 rounded-full"></div>
+                  </motion.div>
+                  
+                  {/* Logo with hover effect */}
+                  <motion.img 
+                    src={bkinclogo} 
+                    alt="BKINC Logo" 
+                    className="w-32 h-auto relative z-10 transition-all duration-500 
+                             group-hover:brightness-125 group-hover:contrast-125
+                             group-hover:drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]
+                             group-active:brightness-150 group-active:contrast-150"
+                    style={{
+                      filter: "drop-shadow(0 0 8px rgba(59,130,246,0.3))"
+                    }}
+                  />
+
+                  {/* Interactive touch feedback for mobile */}
+                  <motion.div 
+                    className="absolute inset-0 rounded-full bg-white/5 opacity-0 group-hover:opacity-100 group-active:opacity-0"
+                    initial={false}
+                    whileTap={{
+                      scale: 0.9,
+                      opacity: 0.2,
+                      transition: { duration: 0.1 }
+                    }}
+                  />
                 </motion.div>
-              </div>
-            </section>
-            <section id="portfolio">
-              <motion.div
-                variants={pageTransition}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-              >
-                <Portfolio />
+
+                <motion.p 
+                  className="text-lg text-white font-medium"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  Crafting Digital Excellence
+                </motion.p>
               </motion.div>
-            </section>
-            {/* Footer Section */}
-            <footer className="w-full h-20 bg-black/50 backdrop-blur-sm">
-              <div className="max-w-screen-xl mx-auto h-full flex items-center justify-center">
-                <p className="text-gray-400 text-sm">© 2025 BKINC. All rights reserved.</p>
-              </div>
-            </footer>
-          </AnimatePresence>
-      </main>
-      <UpworkLogo />
+            </div>
+          </section>
+          <StickyGlowingLogo />
+        </main>
       </motion.div>
     </AnimationProvider>
   );
