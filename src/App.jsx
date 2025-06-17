@@ -5,6 +5,8 @@ import TechStack from "./components/TechStack";
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 import Portfolio from "./components/Portfolio";
+import Contact from "./components/Contact";
+import SocialLinks from "./components/SocialLinks";
 import GlowingLogo from "./components/GlowingLogo";
 import StickyGlowingLogo from "./components/StickyGlowingLogo";
 import { AnimationProvider, pageTransition } from "./context/AnimationContext";
@@ -45,6 +47,7 @@ function App() {
         </div>
 
         <NavBar />
+        <SocialLinks />
         <GlowingLogo />
         <main className="relative">
           <section id="home">
@@ -182,6 +185,16 @@ function App() {
                 </motion.p>
               </motion.div>
             </div>
+          </section>
+          <section id="contact">
+            <motion.div
+              variants={pageTransition}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <Contact />
+            </motion.div>
           </section>
           <StickyGlowingLogo />
         </main>
