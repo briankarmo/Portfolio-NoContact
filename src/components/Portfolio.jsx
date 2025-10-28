@@ -114,7 +114,7 @@ const projects = [
   {
     id: 8,
     src: "/assets/portfolio/three-800x450.webp",
-    demo: "https://briankarmo-3js-3d.netlify.app/",
+    demo: "https://brian-3js-3d.netlify.app/",
     title: "3D Portfolio",
     description: (
       <>

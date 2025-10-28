@@ -62,7 +62,7 @@ const NavBar = () => {
               className="text-2xl sm:text-3xl lg:text-4xl font-signature bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
               style={{ fontFamily: "'Dancing Script', 'Pacifico', 'font-signature', cursive" }}
             >
-              BRIAN
+              Brian
             </motion.h1>
           </motion.div>
 
@@ -149,7 +149,7 @@ const NavBar = () => {
                   className="text-4xl sm:text-5xl font-signature bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent pt-12 sm:pt-16"
                   style={{ fontFamily: "'Dancing Script', 'Pacifico', 'font-signature', cursive" }}
                 >
-                  BRIAN
+                  Brian
                 </motion.h1>
               </div>
 

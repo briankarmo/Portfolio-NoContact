@@ -8,8 +8,6 @@ import TechStack from "../src/components/TechStack";
 import Home from "../src/components/Home";
 import NavBar from "../src/components/NavBar";
 import Portfolio from "../src/components/Portfolio";
-import Contact from "../src/components/Contact";
-import SocialLinks from "../src/components/SocialLinks";
 import GlowingLogo from "../src/components/GlowingLogo";
 import StickyGlowingLogo from "../src/components/StickyGlowingLogo";
 import { AnimationProvider, pageTransition } from "../src/context/AnimationContext";
@@ -54,7 +52,6 @@ export default function HomePage() {
         </div>
 
         <NavBar />
-        <SocialLinks />
         <GlowingLogo />
         <main className="relative">
           <section id="home">
@@ -150,16 +147,6 @@ export default function HomePage() {
               exit="exit"
             >
               <Portfolio />
-            </motion.div>
-          </section>
-          <section id="contact">
-            <motion.div
-              variants={pageTransition}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-            >
-              <Contact />
             </motion.div>
           </section>
           <StickyGlowingLogo />

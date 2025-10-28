@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaGithub } from "react-icons/fa";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { HiOutlineMail } from "react-icons/hi";
 import { BsFillPersonLinesFill } from "react-icons/bs";
+import { SiUpwork } from "react-icons/si";
 import { FiArrowRight, FiArrowLeft } from "react-icons/fi";
 
 const SocialLinks = () => {
@@ -11,7 +13,10 @@ const SocialLinks = () => {
   const revealTimeouts = useRef([]);
 
   const links = [
-    { id: 1, text: "Resume", icon: <BsFillPersonLinesFill className="text-gray-300" />, href: "/Brian-Karmo.pdf", download: "Brian-Karmo.pdf" },
+    { id: 4, text: "Upwork", icon: <SiUpwork className="text-[#14A800]" />, href: "https://www.upwork.com/freelancers/briankarmo?mp_source=share", external: true },
+    { id: 3, text: "Resume", icon: <BsFillPersonLinesFill className="text-gray-300" />, href: "/Brian-Karmo.pdf", download: "Brian-Karmo.pdf" },
+    { id: 2, text: "Email", icon: <HiOutlineMail className="text-blue-400" />, href: "mailto:briankarmo@briankarmo.com", external: true },
+    { id: 1, text: "LinkedIn", icon: <FaLinkedin className="text-blue-600" />, href: "https://www.linkedin.com/in/briankarmo/", external: true },
     { id: 0, text: "GitHub", icon: <FaGithub className="text-white" />, href: "https://github.com/briankarmo", external: true },
   ];
 

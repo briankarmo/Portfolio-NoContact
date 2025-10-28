@@ -39,10 +39,9 @@ const About = () => {
             <div className="bg-gray-900/30 rounded-lg p-6 mx-4 sm:mx-0">
               <p className="text-gray-200 leading-relaxed sm:leading-loose m-0">
                 My journey as a developer began with a profound passion for <GradientKeyword>web design</GradientKeyword>, 
-                quickly evolving into a deep love for <GradientKeyword>coding</GradientKeyword> and <GradientKeyword>creative problem-solving</GradientKeyword>. I build <GradientKeyword>dynamic</GradientKeyword>, <GradientKeyword>interactive</GradientKeyword>, 
-                and <GradientKeyword>responsive</GradientKeyword> applications using powerful <GradientTech>front-end frameworks</GradientTech> such 
-                as <GradientTech>React.js</GradientTech>, <GradientTech>Next.js</GradientTech>, and <GradientTech>Vue.js</GradientTech>, elegantly paired with <GradientTech>Tailwind CSS</GradientTech> to create <GradientKeyword>clean</GradientKeyword>, <GradientKeyword>efficient</GradientKeyword>, 
-                and visually appealing designs.
+                quickly evolving into a deep love for <GradientKeyword>coding</GradientKeyword> and <GradientKeyword>creative problem-solving</GradientKeyword>. Specializing in <GradientTech>full-stack development</GradientTech>, I architect <GradientKeyword>dynamic</GradientKeyword>, <GradientKeyword>interactive</GradientKeyword>, 
+                and <GradientKeyword>responsive</GradientKeyword> applications with modern <GradientTech>front-end frameworks</GradientTech>—<GradientTech>React.js</GradientTech>, <GradientTech>Next.js</GradientTech>, and <GradientTech>Vue.js</GradientTech>—paired with <GradientTech>Tailwind CSS</GradientTech>, alongside robust <GradientTech>backend technologies</GradientTech> like <GradientTech>Node.js</GradientTech>, <GradientTech>Python</GradientTech>, and <GradientTech>PHP</GradientTech>, delivering <GradientKeyword>clean</GradientKeyword>, <GradientKeyword>efficient</GradientKeyword>, 
+                and visually compelling user experiences.
               </p>
             </div>
             </MotionWrapper>
