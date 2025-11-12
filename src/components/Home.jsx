@@ -14,6 +14,8 @@ const GradientKeyword = ({ children }) => (
 );
 
 const Home = () => {
+  const [isImageActive, setIsImageActive] = React.useState(false);
+
   useEffect(() => {
     // Initialize AOS
     AOS.init({
@@ -31,6 +33,10 @@ const Home = () => {
       window.history.scrollRestoration = 'auto';
     };
   }, []);
+
+  const handleImageClick = () => {
+    setIsImageActive(!isImageActive);
+  };
 
   const categories = [
     {
@@ -74,27 +80,27 @@ const Home = () => {
         stiffness: 50,
         damping: 15
       }}
-      className="relative min-h-screen w-full bg-gradient-to-b from-black via-gray-900 to-gray-800 flex flex-col items-start overflow-hidden pt-8 sm:pt-12 pb-0"
+      className="relative w-full min-h-screen bg-gradient-to-b from-black via-gray-900 to-gray-800 flex flex-col items-start overflow-hidden pt-16 sm:pt-20 pb-0"
     >
-      {/* Background Blur Effects */}
-      <div className="absolute inset-0">
+      {/* Background Blur Effects - Full coverage */}
+      <div className="fixed inset-0 w-full h-full -z-10" style={{ position: 'absolute' }}>
         {/* Main gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-800/90 via-gray-900/95 to-black/90"></div>
+        <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-gray-800/90 via-gray-900/95 to-black/90"></div>
         
         {/* Subtle grid pattern for depth */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f1a_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f1a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+        <div className="absolute inset-0 w-full h-full bg-[linear-gradient(to_right,#4f4f4f1a_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f1a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
         
         {/* Radial gradient for depth */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-800/80 via-gray-900/90 to-black/95"></div>
+        <div className="absolute inset-0 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-800/80 via-gray-900/90 to-black/95"></div>
         
         {/* Ambient light effect */}
         <div className="absolute top-0 -left-1/4 w-1/2 h-1/2 bg-gray-700/10 rounded-full blur-[120px]"></div>
         <div className="absolute bottom-0 -right-1/4 w-1/2 h-1/2 bg-gray-700/10 rounded-full blur-[120px]"></div>
       </div>
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-900/95 via-gray-900/90 to-black/95 backdrop-blur-[1px]"></div>
+      <div className="absolute inset-0 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-900/95 via-gray-900/90 to-black/95 backdrop-blur-[1px]"></div>
 
-      <div className="relative max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-2 sm:mt-4 mb-0">
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12">
+      <div className="relative w-full max-w-screen-2xl mx-auto px-3 sm:px-5 lg:px-6 xl:px-10 mt-2 sm:mt-1 mb-0">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8 lg:gap-12 xl:gap-16 w-full">
           {/* Text Content */}
           <motion.div 
             initial={{ opacity: 0, x: -100 }}
@@ -104,7 +110,7 @@ const Home = () => {
               delay: 0.8,
               ease: [0.22, 1, 0.36, 1] 
             }}
-            className="order-2 lg:order-1 flex-1 text-center lg:text-left"
+            className="order-2 lg:order-1 flex-1 text-center lg:text-left mt-4 sm:mt-0"
           >
             <div className="space-y-3 sm:space-y-4 max-w-2xl mx-auto">
               <motion.div 
@@ -114,7 +120,7 @@ const Home = () => {
                 className="w-full backdrop-blur-sm bg-gray-900/30 p-3 sm:p-4 rounded-2xl"
               >
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-signature font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent whitespace-normal">
-                  Brian
+                  BRIAN
                 </h1>
                 <h2 className="mt-2 text-xl sm:text-2xl md:text-3xl font-semibold bg-gradient-to-r from-purple-500 via-blue-500 to-white bg-clip-text text-transparent">
                   Full-Stack Software Engineer
@@ -132,23 +138,43 @@ const Home = () => {
               delay: 0.8,
               ease: [0.22, 1, 0.36, 1] 
             }}
-            className="order-1 lg:order-2 flex-1 flex justify-center items-center"
+            className="order-1 lg:order-2 flex-1 flex justify-center items-center w-full"
           >
-            <div className="relative group image-container">
-              {/* 3D Gradient Background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-800/50 via-gray-900/50 to-black/50 rounded-2xl transform transition-all duration-500 group-hover:scale-[1.02]"></div>
+            <div 
+              className="relative group w-full max-w-[320px] sm:max-w-[380px] md:max-w-md lg:max-w-lg xl:max-w-xl cursor-pointer"
+              onClick={handleImageClick}
+            >
+              {/* Background - seamlessly blends with application background */}
+              <div className={`absolute -inset-2 bg-gradient-to-br from-gray-800 via-gray-900 to-black rounded-xl transition-all duration-700 ${
+                isImageActive 
+                  ? 'shadow-[0_0_20px_rgba(255,255,255,0.08)]' 
+                  : ''
+              }`}></div>
               
-              {/* Subtle Border Gradient */}
-              <div className="absolute inset-0 rounded-2xl p-[1px] bg-gradient-to-br from-gray-600/30 via-gray-500/20 to-gray-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              {/* Border - very subtle highlight when active */}
+              <div className={`absolute -inset-2 rounded-xl p-[1px] transition-all duration-700 ${
+                isImageActive
+                  ? 'bg-gradient-to-br from-white/15 via-gray-300/8 to-white/15'
+                  : 'bg-transparent'
+              }`}></div>
               
-              {/* Image container */}
-              <div className="relative block w-full max-w-md lg:max-w-lg">
+              {/* Very subtle highlight glow when clicked */}
+              {isImageActive && (
+                <div className="absolute -inset-3 bg-white/3 rounded-2xl blur-lg"></div>
+              )}
+              
+              {/* Image container with padding to prevent layout shift */}
+              <div className="relative block w-full p-2 sm:p-3">
                 <Image
                   src="/heroimage.png"
                   alt="Hero"
                   width={600}
                   height={600}
-                  className="w-full h-auto rounded-2xl transform transition duration-500 hover:scale-[1.02] relative z-10"
+                  className={`w-full h-auto rounded-2xl transition-all duration-700 relative z-10 ${
+                    isImageActive 
+                      ? 'brightness-103 drop-shadow-[0_0_12px_rgba(255,255,255,0.1)]' 
+                      : ''
+                  }`}
                   priority
                   style={{
                     backfaceVisibility: 'hidden',
@@ -157,7 +183,8 @@ const Home = () => {
                     WebkitTransform: 'translateZ(0)',
                     maxWidth: '100%',
                     height: 'auto',
-                    display: 'block'
+                    display: 'block',
+                    objectFit: 'contain'
                   }}
                 />
               </div>
@@ -174,7 +201,7 @@ const Home = () => {
             duration: 0.8,
             ease: [0.22, 1, 0.36, 1]
           }}
-          className="mt-16 sm:mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto px-4"
+          className="mt-6 sm:mt-10 lg:mt-14 mb-28 sm:mb-24 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto px-4"
         >
           {categories.map((category, index) => (
             <motion.div
@@ -223,7 +250,7 @@ const Home = () => {
             delay: 0.3,
             ease: [0.22, 1, 0.36, 1]
           }}
-          className="mt-16 sm:mt-20 flex justify-center"
+          className="mt-6 sm:mt-10 lg:mt-14 mb-28 sm:mb-24 flex justify-center"
         >
           <Link
             to="portfolio"

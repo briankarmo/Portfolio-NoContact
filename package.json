@@ -7,7 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "images:hero": "node scripts/generate-hero-images.mjs"
+    "images:hero": "node scripts/generate-hero-images.mjs",
+    "images:favicon": "node scripts/generate-favicon.mjs",
+    "images:projects": "node scripts/generate-project-images.mjs",
+    "images:social": "node scripts/generate-social-images.mjs",
+    "images:logo": "node scripts/generate-logo-icons.mjs",
+    "images:all": "npm run images:hero && npm run images:favicon && npm run images:projects && npm run images:social && npm run images:logo"
   },
   "dependencies": {
     "aos": "^2.3.4",

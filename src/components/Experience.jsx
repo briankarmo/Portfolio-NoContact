@@ -124,7 +124,7 @@ const Experience = () => (
           {/* Logo container */}
           <div className="relative">
             <img
-              src="/assets/bkinclogo.png"
+              src="/BK-logo-512.png"
               alt="BK Inc Logo"
               width="144"
               height="144"
