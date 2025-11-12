@@ -6,6 +6,7 @@ const projectRoot = path.resolve(process.cwd());
 const publicDir = path.join(projectRoot, 'public');
 const heroSource = path.join(publicDir, 'heroimage.png');
 const bkSource = path.join(publicDir, 'BK.png');
+const bkincSource = path.join(publicDir, 'BK-logo-512.png');
 
 async function ensureSourceExists() {
   const missing = [];
@@ -37,20 +38,58 @@ async function generateHeroImages() {
     )
   );
 
-  // Social preview images (anchor to top to avoid cutting off head)
+  // Social preview images with extra padding for aggressive mobile cropping
+  // Using original image with transparent background
   const socialTargets = [
     { w: 600, h: 315, name: 'heroImage-600x315.png' },
     { w: 1200, h: 630, name: 'heroImage-1200x630.png' }
   ];
 
+  const metadata = await sharp(heroSource).metadata();
+  
   await Promise.all(
-    socialTargets.map(({ w, h, name }) =>
-      base
+    socialTargets.map(async ({ w, h, name }) => {
+      // Scale down to 70% of height with extra top padding for mobile messaging apps
+      const scaledHeight = Math.floor(h * 0.70);
+      const scaledWidth = Math.floor((metadata.width / metadata.height) * scaledHeight);
+      
+      // Resize the image smaller first
+      const resizedBuffer = await base
         .clone()
-        .resize(w, h, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
-        .png({ compressionLevel: 9, adaptiveFiltering: true })
-        .toFile(path.join(publicDir, name))
-    )
+        .resize(scaledWidth, scaledHeight, { 
+          fit: 'inside',
+          kernel: 'lanczos3'
+        })
+        .toBuffer();
+      
+      // Get dimensions of resized image
+      const resizedMeta = await sharp(resizedBuffer).metadata();
+      
+      // Position image lower (more top padding) to avoid mobile crop
+      const topPadding = Math.floor((h - resizedMeta.height) * 0.55); // 55% of remaining space on top
+      const leftPadding = Math.floor((w - resizedMeta.width) / 2);
+      
+      // Create transparent canvas
+      return sharp({
+        create: {
+          width: w,
+          height: h,
+          channels: 4,
+          background: { r: 0, g: 0, b: 0, alpha: 0 }
+        }
+      })
+      .composite([{
+        input: resizedBuffer,
+        top: topPadding,
+        left: leftPadding
+      }])
+      .png({ 
+        compressionLevel: 6, 
+        adaptiveFiltering: true,
+        quality: 100
+      })
+      .toFile(path.join(publicDir, name));
+    })
   );
 
   // AVIF & WEBP full-size responsive exports
@@ -99,6 +138,7 @@ async function run() {
   await generateHeroImages();
   await generateBkIcons();
   await writeFaviconsFromBk();
+  await generateBkincSocialImages();
   await generatePortfolioImages();
   console.log('Hero and BK images generated in /public');
 }
@@ -222,4 +262,77 @@ async function refineHeroAvif(widths) {
       .toFormat('avif', { quality: 75, chromaSubsampling: '4:4:4', effort: 4 })
       .toFile(path.join(publicDir, `heroimage-${w}.avif`));
   }));
+}
+
+async function generateBkincSocialImages() {
+  try {
+    await fs.access(bkincSource);
+  } catch {
+    console.log('BK-logo-512.png not found, skipping social image generation');
+    return;
+  }
+
+  // Facebook Open Graph recommended: 1200x630
+  // Twitter Summary Card: 1:1 ratio, at least 144x144
+  // Create images with black background, logo contained and centered
+  
+  const socialTargets = [
+    { w: 1200, h: 630, name: 'bkinc-og-1200x630.png' },
+    { w: 1200, h: 1200, name: 'bkinc-og-1200x1200.png' }
+  ];
+
+  const metadata = await sharp(bkincSource).metadata();
+  
+  await Promise.all(
+    socialTargets.map(async ({ w, h, name }) => {
+      // Calculate the maximum size to fit the logo (smaller height-wise to fit within Facebook container)
+      // Using 35% of canvas height to make it shorter, 50% width to maintain aspect ratio
+      const maxLogoWidth = Math.floor(w * 0.50);  // 50% of canvas width
+      const maxLogoHeight = Math.floor(h * 0.35); // 35% of canvas height (shorter)
+      
+      // Determine the scaling to fit within the max dimensions using contain fit
+      // Use height as the limiting factor to make it shorter
+      const scale = Math.min(maxLogoWidth / metadata.width, maxLogoHeight / metadata.height);
+      const scaledWidth = Math.floor(metadata.width * scale);
+      const scaledHeight = Math.floor(metadata.height * scale);
+      
+      // Resize the logo with contain fit, preserving transparency
+      const resizedBuffer = await sharp(bkincSource)
+        .resize(scaledWidth, scaledHeight, { 
+          fit: 'contain',
+          background: { r: 0, g: 0, b: 0, alpha: 0 },
+          kernel: 'lanczos3'
+        })
+        .ensureAlpha()
+        .toBuffer();
+      
+      // Center the logo on the canvas (vertically centered)
+      const topPadding = Math.floor((h - scaledHeight) / 2);
+      const leftPadding = Math.floor((w - scaledWidth) / 2);
+      
+      // Create canvas with pure black background (RGB 0,0,0)
+      return sharp({
+        create: {
+          width: w,
+          height: h,
+          channels: 3, // RGB only, no alpha for solid black
+          background: { r: 0, g: 0, b: 0 } // Pure black background
+        }
+      })
+      .composite([{
+        input: resizedBuffer,
+        top: topPadding,
+        left: leftPadding,
+        blend: 'over' // Ensure logo overlays on black background
+      }])
+      .png({ 
+        compressionLevel: 9, 
+        adaptiveFiltering: true,
+        quality: 100
+      })
+      .toFile(path.join(publicDir, name));
+    })
+  );
+  
+  console.log('BK Inc social media images generated');
 }

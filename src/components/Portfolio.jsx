@@ -20,7 +20,6 @@ const GradientKeyword = ({ children }) => (
 );
 
 const projects = [
-  // NEW FIRST PROJECT — GovLink Global
   {
     id: 1,
     src: "/assets/portfolio/govlink-800x450.webp",
@@ -34,25 +33,10 @@ const projects = [
         <GradientKeyword>scale</GradientKeyword> with clean, user-focused <GradientTech>UI/UX</GradientTech>.
       </>
     ),
-    // Ensure one of the three bubbles shows MERN
     tags: ["MERN", "Full-stack", "UI/UX"],
   },
-
-  // Existing items (ids incremented just to keep them unique)
   {
     id: 2,
-    src: "/assets/portfolio/boston-800x450.webp",
-    demo: "https://www.bostoninnovations.org/company",
-    title: "Boston Innovations",
-    description: (
-      <>
-        <GradientKeyword>SEO-Optimized</GradientKeyword> Portfolio Site with <GradientTech>Next.js</GradientTech> & <GradientTech>Tailwind CSS</GradientTech>.
-      </>
-    ),
-    tags: ["Next.js", "Tailwind CSS", "SEO"],
-  },
-  {
-    id: 3,
     src: "/assets/portfolio/shutter-800x450.webp",
     demo: "https://shutterguide.io/",
     title: "ShutterGuide.IO",
@@ -64,7 +48,7 @@ const projects = [
     tags: ["Next.js", "Firebase", "Stripe"],
   },
   {
-    id: 4,
+    id: 3,
     src: "/assets/portfolio/shopify-800x450.webp",
     demo: "https://zazadepotmi.myshopify.com/",
     title: "Bespoke Shopify Liquid Development",
@@ -76,7 +60,7 @@ const projects = [
     tags: ["Shopify", "Liquid", "eCommerce", "Custom Theme"],
   },
   {
-    id: 5,
+    id: 4,
     src: "/assets/portfolio/ModernApp-800x450.webp",
     demo: "https://bk-inc-modern-app.netlify.app/",
     title: "Modern Business App",
@@ -88,7 +72,7 @@ const projects = [
     tags: ["React", "Tailwind CSS", "UI/UX"],
   },
   {
-    id: 6,
+    id: 5,
     src: "/assets/portfolio/Apple-800x450.webp",
     demo: "https://bkinc525.netlify.app/",
     title: "iPhone Landing Page",
@@ -100,7 +84,7 @@ const projects = [
     tags: ["Three.js", "3D", "Animation"]
   },
   {
-    id: 7,
+    id: 6,
     src: "/assets/portfolio/weather-800x450.webp",
     demo: "https://bkinc-weather.netlify.app/",
     title: "Weather Tracker",
@@ -112,7 +96,7 @@ const projects = [
     tags: ["API", "React", "Real-time"],
   },
   {
-    id: 8,
+    id: 7,
     src: "/assets/portfolio/three-800x450.webp",
     demo: "https://brian-3js-3d.netlify.app/",
     title: "3D Portfolio",
@@ -124,7 +108,7 @@ const projects = [
     tags: ["Three.js", "3D", "Interactive"],
   },
   {
-    id: 9,
+    id: 8,
     src: "/assets/portfolio/bkinctube-800x450.webp",
     demo: "https://bkcodetube.netlify.app/",
     title: "BK Code Tube",
@@ -149,14 +133,14 @@ const ProjectCard = ({ src, demo, title, description, tags, index }) => (
       {/* Content container */}
       <div className="relative bg-gradient-to-br from-gray-900/90 via-gray-900/95 to-black/90 rounded-2xl p-6 backdrop-blur-sm">
         {/* Image container with 3D effect */}
-        <div className="relative image-container mb-3 aspect-[16/9] w-full overflow-hidden rounded-xl">
+        <div className="relative image-container mb-3 w-full overflow-hidden rounded-xl bg-gray-950/50" style={{ aspectRatio: '16/9' }}>
           <Image
             src={src}
             alt={title}
-            width={400}
-            height={225}
-            className="absolute inset-0 w-full h-full object-contain transform transition duration-500 group-hover:scale-[1.02]"
-            style={{ objectPosition: 'center top' }}
+            width={800}
+            height={450}
+            className="w-full h-full object-contain transform transition duration-500 group-hover:scale-105"
+            priority={index < 2}
           />
         </div>
 
@@ -277,9 +261,9 @@ const Portfolio = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-6 md:gap-8">
           {projects.map((project, index) => (
-            <ProjectCard key={index} {...project} index={index} />
+            <ProjectCard key={project.id} {...project} index={index} />
           ))}
         </div>
       </div>

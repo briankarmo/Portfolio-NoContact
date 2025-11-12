@@ -1,36 +1,57 @@
 {
-  "name": "Brian Karmo | Software Developer",
-  "short_name": "Brian Karmo",
+  "name": "BRIAN | Software Developer",
+  "short_name": "BRIAN",
+  "description": "Explore BRIAN's portfolio, showcasing full-scale projects and modern software development using React, Next.js, TypeScript, and full-stack JavaScript.",
+  "start_url": "/",
+  "scope": "/",
   "icons": [
     {
-      "src": "/bk-16x16.png",
-      "sizes": "16x16",
+      "src": "/assets/icons/bkinclogo-72x72.png",
+      "sizes": "72x72",
       "type": "image/png"
     },
     {
-      "src": "/bk-32x32.png",
-      "sizes": "32x32",
+      "src": "/assets/icons/bkinclogo-96x96.png",
+      "sizes": "96x96",
       "type": "image/png"
     },
     {
-      "src": "/bk-180x180.png",
-      "sizes": "180x180",
+      "src": "/assets/icons/bkinclogo-128x128.png",
+      "sizes": "128x128",
       "type": "image/png"
     },
     {
-      "src": "/bk-192x192.png",
+      "src": "/assets/icons/bkinclogo-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/bkinclogo-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/bkinclogo-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/bk-512x512.png",
+      "src": "/assets/icons/bkinclogo-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/bkinclogo-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any"
+      "purpose": "any maskable"
     }
   ],
-  "theme_color": "#0EA5E9",
-  "background_color": "#0EA5E9",
-  "display": "standalone"
+  "theme_color": "#D4AF37",
+  "background_color": "#000000",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "categories": ["portfolio", "business", "productivity"],
+  "screenshots": []
 } 

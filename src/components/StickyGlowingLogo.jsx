@@ -11,14 +11,14 @@ const StickyGlowingLogo = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
     >
-      <div className="relative flex justify-center items-center mb-2">
+      <div className="relative flex justify-center items-center mb-0 sm:mb-2">
         {/* Logo - with proper spacing and mobile responsiveness */}
         <Image 
-          src="/assets/bkinclogo.png"
-          alt="BKINC Logo Sticky" 
+          src="/BK.png"
+          alt="BK Logo Sticky" 
           width={128}
           height={128}
-          className="w-32 h-auto"
+          className="w-24 sm:w-32 h-auto"
         />
       </div>
     </motion.div>

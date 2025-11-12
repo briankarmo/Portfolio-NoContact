@@ -1,4 +1,3 @@
-import Boston from "./assets/portfolio/boston.png";
 import ShutterGuide from "./assets/portfolio/shutter.png";
 import Shopify from "./assets/portfolio/shopify.png";
 import ModernApp from "./assets/portfolio/ModernApp.png";
@@ -9,14 +8,6 @@ import Weather from "./assets/portfolio/weather.png";
 export const projects = [
   {
     id: 1,
-    src: Boston,
-    demo: "https://www.bostoninnovations.org/company",
-    title: "AI Innovation Platform",
-    description: "Next.js corporate platform for artificial intelligence solutions, featuring dynamic animations and modern UI/UX design. Includes real-time data visualization, interactive dashboards, and seamless user experience.",
-    tags: ["Next.js", "Animations", "Corporate"],
-  },
-  {
-    id: 2,
     src: ShutterGuide,
     demo: "https://shutterguide.io/",
     title: "Photography Marketplace",
@@ -24,7 +15,7 @@ export const projects = [
     tags: ["Next.js", "Firebase", "Stripe"],
   },
   {
-    id: 3,
+    id: 2,
     src: Shopify,
     demo: "https://zazadepotmi.myshopify.com/",
     title: "ZAZA Depot Store",
@@ -32,7 +23,7 @@ export const projects = [
     tags: ["Shopify", "Liquid", "eCommerce"],
   },
   {
-    id: 4,
+    id: 3,
     src: ModernApp,
     demo: "https://bk-inc-modern-app.netlify.app/",
     title: "Modern Payment Platform",
@@ -40,7 +31,7 @@ export const projects = [
     tags: ["React", "Three.js", "Payments"],
   },
   {
-    id: 5,
+    id: 4,
     src: Apple,
     demo: "https://briankarmo-appledemo.netlify.app/",
     title: "iPhone 3D Showcase",
@@ -48,7 +39,7 @@ export const projects = [
     tags: ["Three.js", "React", "GSAP"],
   },
   {
-    id: 6,
+    id: 5,
     src: Three,
     demo: "https://briankarmo-threejs-nocontact.netlify.app/",
     title: "3D Developer Portfolio",
@@ -56,7 +47,7 @@ export const projects = [
     tags: ["Three.js", "React", "3D", "WebGL"],
   },
   {
-    id: 7,
+    id: 6,
     src: Weather,
     demo: "https://briankarmo-weather.netlify.app/",
     title: "Weather Dashboard",
